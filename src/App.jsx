@@ -134,11 +134,11 @@ const BentleyWeddingSite = () => {
     {
       icon: Shield,
       title: 'Bezpieczeństwo',
-      desc: 'Najwyższej klasy systemy i doświadczony kierowca',
+      desc: 'Najwyższej klasy systemy i profesjonalni kierowcy',
     },
     { icon: Star, title: 'Prestiż', desc: 'Najbardziej rozpoznawalna marka premium' },
-    { icon: Clock, title: 'Komfort', desc: 'Luksusowe wnętrze z najlepszych materiałów' },
-    { icon: Award, title: 'Doskonałość', desc: 'Perfekcja w każdym detalu' },
+    { icon: Clock, title: 'Punktualność', desc: 'Zawsze na czas, bez względu na okoliczności' },
+    { icon: Award, title: 'Dyskrecja', desc: 'Pełna poufność i profesjonalizm' },
   ]
 
   return (
@@ -177,10 +177,10 @@ const BentleyWeddingSite = () => {
           <div className="flex justify-between items-center h-20 md:h-24">
             <div className="text-xl md:text-3xl font-thin tracking-[0.2em] md:tracking-[0.3em] relative">
               <span className="absolute inset-0 blur-sm bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent">
-                BENTLEY
+                BENTLEY VIP
               </span>
               <span className="relative bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent">
-                BENTLEY
+                BENTLEY VIP
               </span>
             </div>
 
@@ -246,7 +246,7 @@ const BentleyWeddingSite = () => {
         <div className="relative z-10 text-center max-w-6xl mx-auto w-full">
           <div className="mb-6 md:mb-8 inline-block" style={{ opacity: 1 - scrollY / 500 }}>
             <div className="text-amber-400 text-xs tracking-[0.3em] md:tracking-[0.5em] uppercase mb-4 animate-pulse">
-              Ekskluzywny Wynajem
+              Premium Transport
             </div>
             <div className="h-px w-24 md:w-32 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto" />
           </div>
@@ -259,7 +259,7 @@ const BentleyWeddingSite = () => {
               BENTLEY
             </span>
             <span className="block bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 bg-clip-text text-transparent font-light">
-              FLYING SPUR
+              VIP
             </span>
           </h1>
 
@@ -267,8 +267,8 @@ const BentleyWeddingSite = () => {
             className="text-base sm:text-lg md:text-1xl lg:text-1xl mb-12 md:mb-16 text-gray-300 font-light tracking-wide max-w-3xl mx-auto leading-relaxed px-4"
             style={{ opacity: 1 - scrollY / 500 }}
           >
-            Uczyń swój ślub <span className="text-amber-400">niezapomnianym</span>. Luksus,
-            elegancja i prestiż w jednym.
+            Ekskluzywne <span className="text-amber-400">przejazdy VIP</span>, śluby, przewozy
+            biznesowe i usługi szoferskie na najwyższym poziomie.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center px-4">
@@ -290,7 +290,7 @@ const BentleyWeddingSite = () => {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-yellow-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               <span className="relative group-hover:text-black transition-colors duration-300">
-                ZAPYTAJ O OFERTĘ
+                ZAREZERWUJ TERAZ
               </span>
             </button>
           </div>
@@ -303,10 +303,10 @@ const BentleyWeddingSite = () => {
           <div className="animate-bounce flex flex-col items-center">
             <ChevronDown size={32} className="md:w-10 md:h-10 text-amber-400" />
           </div>
-          <div className="text-xs tracking-widest text-amber-400 mt-2">SCROLL</div>
+          <div className="text-xs tracking-widest text-amber-400 mt-2">PRZEWIŃ</div>
         </div>
 
-        {/* Floating elements - zmniejszona wrażliwość z 20/30 na 5/8 */}
+        {/* Floating elements */}
         <div className="hidden md:block absolute top-1/4 left-10 w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
         <div className="hidden md:block absolute bottom-1/4 right-10 w-3 h-3 border border-amber-400 rotate-45" />
       </section>
@@ -320,10 +320,10 @@ const BentleyWeddingSite = () => {
           <div className="w-full h-full bg-gradient-to-br from-amber-900/20 via-black to-black" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-1 sm:px-6 lg:px-8">
           <div className="backdrop-blur-xl bg-white/5 border border-amber-400/20 p-1 md:p-2 rounded-lg shadow-2xl">
             <div className="aspect-video bg-gradient-to-br from-gray-900 via-amber-900/20 to-black flex items-center justify-center text-xl sm:text-3xl md:text-5xl lg:text-6xl text-amber-400/30 font-thin tracking-wider rounded p-4 text-center leading-tight">
-              [FILMIK PREZENTACYJNY
+              [WIDEO PREZENTACYJNE
               <br className="hidden sm:block" />
               BENTLEY FLYING SPUR]
             </div>
@@ -360,8 +360,9 @@ const BentleyWeddingSite = () => {
                 <p className="text-gray-400 text-base md:text-lg leading-relaxed font-light">
                   Bentley Flying Spur to uosobienie brytyjskiego luksusu i rzemiosła
                   motoryzacyjnego. Ten wyjątkowy samochód łączy w sobie niespotykaną elegancję z
-                  imponującą mocą, tworząc idealne połączenie dla najbardziej wymagających ceremonii
-                  ślubnych.
+                  imponującą mocą, tworząc idealne połączenie dla wymagających klientów - od ślubów,
+                  przez przejazdy VIP, aż po przewozy biznesowe i usługi szoferskie najwyższej
+                  klasy.
                 </p>
               </div>
             </div>
@@ -387,7 +388,7 @@ const BentleyWeddingSite = () => {
           </div>
         </div>
       </section>
-      <section className="lg:mb-40 lg:pl-20 lg:pr-20 mb-40 pr-10 pl-10">
+      <section className=" lg:mb-40 lg:pl-20 lg:pr-20 px-5 mb-40 ">
         <div
           className="relative mt-12 lg:mt-0"
           style={{
@@ -401,7 +402,7 @@ const BentleyWeddingSite = () => {
               className="w-full h-full bg-gradient-to-br from-amber-900/30 via-black to-black
                       flex items-center justify-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl
                       text-amber-400/20 font-thin backdrop-blur-sm border border-amber-400/20
-                      rounded-lg p-8 md:p-12 text-center leading-tight"
+                      rounded-lg text-center leading-tight"
               style={style}
             >
               [GŁÓWNE ZDJĘCIE
@@ -412,7 +413,7 @@ const BentleyWeddingSite = () => {
             </div>
           </div>
 
-          <div className="absolute -inset-8 border border-amber-400/20 rounded-lg -z-10" />
+          <div className="absolute -inset-4 border border-amber-400/20 rounded-lg -z-10" />
         </div>
       </section>
 
@@ -420,7 +421,7 @@ const BentleyWeddingSite = () => {
       <section id="gallery" className="relative py-20 md:py-40 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-amber-950/5 to-black" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-1 sm:px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-20">
             <div className="text-amber-400 text-xs tracking-[0.3em] md:tracking-[0.5em] uppercase mb-4 md:mb-6">
               Galeria
@@ -463,30 +464,28 @@ const BentleyWeddingSite = () => {
               Kontakt
             </div>
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-thin mb-4 md:mb-6">
-              Skontaktuj się{' '}
+              Zarezerwuj swoją{' '}
               <span className="bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent font-light">
-                z Nami
+                jazdę
               </span>
             </h2>
             <div className="h-1 w-20 md:w-24 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto" />
           </div>
-
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
             {[
               { icon: Phone, label: 'Telefon', value: '999 999 999', href: 'tel:999999999' },
               {
                 icon: Mail,
                 label: 'Email',
-                value: 'kontakt@bentleywedding.pl',
-                href: 'mailto:kontakt@bentleywedding.pl',
+                value: 'kontakt@bentleyvip.pl',
+                href: 'mailto:kontakt@bentleyvip.pl',
               },
               { icon: MapPin, label: 'Adres', value: 'Warszawa, Polska' },
               { icon: Clock, label: 'Godziny', value: 'Pn-Pt: 9-20, Sb-Nd: 10-18' },
             ].map((item, i) => (
-              <a
+              <div
                 key={i}
-                href={item.href || '#'}
-                className="group flex flex-col items-center text-center backdrop-blur-xl bg-white/5 border border-amber-400/20 p-6 md:p-8 hover:border-amber-400/40 hover:bg-white/10 transition-all duration-300"
+                className="group flex flex-col items-center text-center backdrop-blur-xl bg-white/5 border  border-amber-400/20 p-6 rounded-lg md:p-8 hover:border-amber-400/40 hover:bg-white/10 transition-all duration-300"
               >
                 <div className="bg-gradient-to-br from-amber-500/20 to-yellow-600/20 w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 mb-4 md:mb-6">
                   <item.icon className="text-amber-400" size={24} />
@@ -495,14 +494,13 @@ const BentleyWeddingSite = () => {
                   {item.label}
                 </div>
                 <div className="text-sm md:text-base font-light break-all">{item.value}</div>
-              </a>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Premium Footer */}
-      <footer className="relative border-t border-amber-400/20 py-12 md:py-20">
+      <footer className="relative border-t border-amber-400/20 py2 md:py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-16">
             <div className="sm:col-span-2">
@@ -510,11 +508,11 @@ const BentleyWeddingSite = () => {
                 <span className="bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent">
                   BENTLEY
                 </span>
-                <span className="text-white"> WEDDING</span>
+                <span className="text-white"> VIP TRANSPORT</span>
               </h3>
               <p className="text-gray-500 leading-relaxed font-light text-sm md:text-base">
-                Ekskluzywny wynajem Bentley Flying Spur na Twój wymarzony ślub. Luksus i elegancja w
-                każdym detalu.
+                Ekskluzywny wynajem Bentley Flying Spur. Przejazdy VIP, śluby, przewozy biznesowe i
+                usługi szoferskie najwyższej klasy.
               </p>
             </div>
 
@@ -544,10 +542,10 @@ const BentleyWeddingSite = () => {
                   999 999 999
                 </a>
                 <a
-                  href="mailto:kontakt@bentleywedding.pl"
+                  href="mailto:kontakt@bentleyvip.pl"
                   className="block hover:text-amber-400 transition-colors break-all"
                 >
-                  kontakt@bentleywedding.pl
+                  kontakt@bentleyvip.pl
                 </a>
                 <p>Warszawa, Polska</p>
               </div>
@@ -555,10 +553,9 @@ const BentleyWeddingSite = () => {
           </div>
 
           <div className="border-t border-amber-400/20 pt-6 md:pt-8 text-center text-gray-600 text-xs md:text-sm font-light tracking-wider">
-            <p>&copy; 2024 Bentley Wedding. Wszystkie prawa zastrzeżone.</p>
+            <p>&copy; 2025 Bentley VIP Transport. Wszystkie prawa zastrzeżone.</p>
           </div>
         </div>
-
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
       </footer>
     </div>

@@ -2,7 +2,6 @@
   "name": "wedding-bentley",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://cheapsik.github.io/bentley-rent/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
