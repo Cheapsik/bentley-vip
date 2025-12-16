@@ -39,13 +39,12 @@ const BentleyWeddingSite = () => {
       : { height: 'calc(100vh - 200px)', maxHeight: '2000px' }),
   }
 
-  // Three.js 3D Background
   useEffect(() => {
     if (!canvasRef.current) return
 
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(
-      75,
+      60,
       window.innerWidth / window.innerHeight,
       0.1,
       1000
@@ -58,9 +57,10 @@ const BentleyWeddingSite = () => {
 
     renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.setClearColor(0x000000, 0)
-    camera.position.z = 5
 
-    // Create floating particles
+    camera.position.set(4, 3, 5)
+    camera.lookAt(0, 0, 0)
+
     const particlesGeometry = new THREE.BufferGeometry()
     const particlesCount = 1000
     const posArray = new Float32Array(particlesCount * 3)
@@ -81,17 +81,26 @@ const BentleyWeddingSite = () => {
     const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial)
     scene.add(particlesMesh)
 
-    // Create rotating rings
-    const ringGeometry = new THREE.TorusGeometry(2, 0.02, 16, 100)
-    const ringMaterial = new THREE.MeshBasicMaterial({
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6)
+    scene.add(ambientLight)
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8)
+    directionalLight.position.set(5, 5, 5)
+    scene.add(directionalLight)
+
+    const ringMaterial = new THREE.MeshPhongMaterial({
       color: 0xd4af37,
+      shininess: 100,
       transparent: true,
-      opacity: 0.3,
+      opacity: 0.5,
     })
+
+    const ringGeometry = new THREE.TorusGeometry(2, 0.01, 16, 100)
     const ring1 = new THREE.Mesh(ringGeometry, ringMaterial)
-    const ring2 = new THREE.Mesh(ringGeometry, ringMaterial)
-    ring2.rotation.x = Math.PI / 2
-    scene.add(ring1, ring2)
+
+    ring1.rotation.x = Math.PI / 4
+
+    scene.add(ring1)
 
     const animate = () => {
       requestAnimationFrame(animate)
@@ -101,10 +110,6 @@ const BentleyWeddingSite = () => {
 
       ring1.rotation.x += 0.003
       ring1.rotation.y += 0.002
-      ring2.rotation.y += 0.002
-      ring2.rotation.z += 0.003
-
-      camera.lookAt(0, 0, 0)
 
       renderer.render(scene, camera)
     }
@@ -553,7 +558,7 @@ const BentleyWeddingSite = () => {
           </div>
 
           <div className="border-t border-amber-400/20 pt-6 md:pt-8 text-center text-gray-600 text-xs md:text-sm font-light tracking-wider">
-            <p>&copy; 2025 Bentley VIP Transport. Wszystkie prawa zastrzeżone.</p>
+            <p>&copy; 2025 Bentley VIP. Wszystkie prawa zastrzeżone.</p>
           </div>
         </div>
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
