@@ -42,8 +42,9 @@ const AboutSection = ({ scrollY }) => {
               <p className="text-gray-400 text-base md:text-lg leading-relaxed font-light">
                 Bentley Flying Spur to uosobienie brytyjskiego luksusu i rzemiosła motoryzacyjnego.
                 Ten wyjątkowy samochód łączy w sobie niespotykaną elegancję z imponującą mocą,
-                tworząc idealne połączenie dla wymagających klientów - od ślubów, przez przejazdy
-                VIP, aż po przewozy biznesowe i usługi szoferskie najwyższej klasy.
+                tworząc idealne połączenie dla wymagających klientów z Rzeszowa i okolic – od
+                wynajmu auta do ślubu, przez ekskluzywne przejazdy VIP, aż po przewozy biznesowe i
+                usługi szoferskie najwyższej klasy.
               </p>
             </div>
           </div>

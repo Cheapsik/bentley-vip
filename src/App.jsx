@@ -181,26 +181,30 @@ const BentleyVipSite = () => {
         />
       </div>
 
-      <Navbar
-        scrollY={scrollY}
-        mobileMenuOpen={mobileMenuOpen}
-        setMobileMenuOpen={setMobileMenuOpen}
-        scrollToSection={scrollToSection}
-      />
+      <header>
+        <Navbar
+          scrollY={scrollY}
+          mobileMenuOpen={mobileMenuOpen}
+          setMobileMenuOpen={setMobileMenuOpen}
+          scrollToSection={scrollToSection}
+        />
+      </header>
 
-      <Hero scrollY={scrollY} scrollToSection={scrollToSection} />
+      <main>
+        <Hero scrollY={scrollY} scrollToSection={scrollToSection} />
 
-      <AboutSection scrollY={scrollY} />
+        <AboutSection scrollY={scrollY} />
 
-      <HeroImageSection translateX={translateX} opacity={opacity} style={style} />
+        <HeroImageSection translateX={translateX} opacity={opacity} style={style} />
 
-      <GallerySection
-        scrollY={scrollY}
-        galleryModalSrc={galleryModalSrc}
-        setGalleryModalSrc={setGalleryModalSrc}
-      />
+        <GallerySection
+          scrollY={scrollY}
+          galleryModalSrc={galleryModalSrc}
+          setGalleryModalSrc={setGalleryModalSrc}
+        />
 
-      <ContactSection />
+        <ContactSection />
+      </main>
 
       <Footer scrollToSection={scrollToSection} />
     </div>

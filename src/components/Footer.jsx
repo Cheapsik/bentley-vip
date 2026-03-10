@@ -4,7 +4,7 @@ const Footer = ({ scrollToSection }) => {
   return (
     <footer className="relative border-t border-amber-400/20 py2 md:py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-16 px-4 py-4 sm:px-0">
           <div className="sm:col-span-2">
             <h3 className="text-2xl md:text-3xl font-thin tracking-[0.2em] md:tracking-[0.3em] mb-4 md:mb-6">
               <span className="bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent">
@@ -49,13 +49,13 @@ const Footer = ({ scrollToSection }) => {
               >
                 kontakt@bentleyvip.pl
               </a>
-              <p>Warszawa, Polska</p>
+              <p>Rzeszów, Polska</p>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-amber-400/20 pt-6 md:pt-8 text-center text-gray-600 text-xs md:text-sm font-light tracking-wider">
-          <p>&copy; 2025 Bentley VIP. Wszystkie prawa zastrzeżone.</p>
+        <div className="border-t border-amber-400/20 pt-6 pb-6 md:pt-8 md:pb-10 text-center text-gray-600 text-xs md:text-sm font-light tracking-wider">
+          <p>&copy; 2026 Bentley VIP. Wszystkie prawa zastrzeżone.</p>
         </div>
       </div>
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
