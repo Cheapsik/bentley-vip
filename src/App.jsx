@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Phone, Mail, MapPin, Clock, Shield, Star, ChevronDown, Menu, X, Award } from 'lucide-react'
 import * as THREE from 'three'
-import heroImage from '@/assets/images/hero.webp'
-import gallery1 from '@/assets/images/gallery-1.webp'
-import gallery2 from '@/assets/images/gallery-2.webp'
-import gallery3 from '@/assets/images/gallery-3.webp'
-import gallery4 from '@/assets/images/gallery-4.webp'
-import gallery5 from '@/assets/images/gallery-5.webp'
-import gallery6 from '@/assets/images/gallery-6.webp'
+import Navbar from '@/components/Navbar'
+import Hero from '@/components/Hero'
+import AboutSection from '@/components/AboutSection'
+import HeroImageSection from '@/components/HeroImageSection'
+import GallerySection from '@/components/GallerySection'
+import ContactSection from '@/components/ContactSection'
+import Footer from '@/components/Footer'
 
 const BentleyVipSite = () => {
   const [scrollY, setScrollY] = useState(0)
@@ -143,26 +142,6 @@ const BentleyVipSite = () => {
     setMobileMenuOpen(false)
   }
 
-  const features = [
-    {
-      icon: Shield,
-      title: 'Bezpieczeństwo',
-      desc: 'Najwyższej klasy systemy i profesjonalni kierowcy',
-    },
-    { icon: Star, title: 'Prestiż', desc: 'Najbardziej rozpoznawalna marka premium' },
-    { icon: Clock, title: 'Punktualność', desc: 'Zawsze na czas, bez względu na okoliczności' },
-    { icon: Award, title: 'Dyskrecja', desc: 'Pełna poufność i profesjonalizm' },
-  ]
-
-  const galleryImages = [
-    { src: gallery1, span: 'col-span-2 row-span-2' },
-    { src: gallery2, span: '' },
-    { src: gallery3, span: '' },
-    { src: gallery4, span: '' },
-    { src: gallery5, span: '' },
-    { src: gallery6, span: 'col-span-2' },
-  ]
-
   useEffect(() => {
     if (galleryModalSrc) document.body.style.overflow = 'hidden'
     else document.body.style.overflow = ''
@@ -202,399 +181,28 @@ const BentleyVipSite = () => {
         />
       </div>
 
-      <nav
-        className="fixed top-0 w-full z-50 transition-all duration-300"
-        style={{
-          background: scrollY > 50 ? 'rgba(0, 0, 0, 0.7)' : 'transparent',
-          backdropFilter: scrollY > 50 ? 'blur(20px)' : 'none',
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20 md:h-24">
-            <div className="text-xl md:text-3xl font-thin tracking-[0.2em] md:tracking-[0.3em] relative">
-              <span className="absolute inset-0 blur-sm bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent">
-                BENTLEY VIP
-              </span>
-              <span className="relative bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent">
-                BENTLEY VIP
-              </span>
-            </div>
+      <Navbar
+        scrollY={scrollY}
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+        scrollToSection={scrollToSection}
+      />
 
-            <div className="hidden lg:flex items-center space-x-8 xl:space-x-12">
-              {['Start', 'O Samochodzie', 'Galeria', 'Kontakt'].map((item, i) => (
-                <button
-                  key={i}
-                  onClick={() => scrollToSection(['home', 'about', 'gallery', 'contact'][i])}
-                  className="relative text-sm tracking-widest hover:text-amber-400 transition-all duration-300 group"
-                >
-                  {item}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-amber-400 to-yellow-600 group-hover:w-full transition-all duration-300" />
-                </button>
-              ))}
-              <a
-                href="tel:999999999"
-                className="px-6 xl:px-8 py-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-medium tracking-wider hover:shadow-lg hover:shadow-amber-500/50 transition-all duration-300 transform hover:scale-105"
-              >
-                ZADZWOŃ
-              </a>
-            </div>
+      <Hero scrollY={scrollY} scrollToSection={scrollToSection} />
 
-            <button
-              className="lg:hidden text-amber-400"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+      <AboutSection scrollY={scrollY} />
 
-          {mobileMenuOpen && (
-            <div className="lg:hidden py-6 space-y-4 backdrop-blur-xl bg-black/80">
-              {['Start', 'O Samochodzie', 'Galeria', 'Kontakt'].map((item, i) => (
-                <button
-                  key={i}
-                  onClick={() => scrollToSection(['home', 'about', 'gallery', 'contact'][i])}
-                  className="block w-full text-left py-3 text-base tracking-wider hover:text-amber-400 transition-colors"
-                >
-                  {item}
-                </button>
-              ))}
-              <a
-                href="tel:999999999"
-                className="block text-center py-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-medium tracking-wider"
-              >
-                ZADZWOŃ
-              </a>
-            </div>
-          )}
-        </div>
-      </nav>
+      <HeroImageSection translateX={translateX} opacity={opacity} style={style} />
 
-      {/* Hero Section */}
-      <section
-        id="home"
-        className="relative min-h-screen flex items-center justify-center overflow-hidden px-4"
-      >
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0gMTAwIDAgTCAwIDAgMCAxMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyMTIsIDE3NSwgNTUsIDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20" />
-        </div>
+      <GallerySection
+        scrollY={scrollY}
+        galleryModalSrc={galleryModalSrc}
+        setGalleryModalSrc={setGalleryModalSrc}
+      />
 
-        <div className="relative z-10 text-center max-w-6xl mx-auto w-full">
-          <div className="mb-6 md:mb-8 inline-block" style={{ opacity: 1 - scrollY / 500 }}>
-            <div className="text-amber-400 text-xs tracking-[0.3em] md:tracking-[0.5em] uppercase mb-4 animate-pulse">
-              Premium Transport
-            </div>
-            <div className="h-px w-24 md:w-32 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto" />
-          </div>
+      <ContactSection />
 
-          <h1
-            className="text-6xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-[6rem] font-thin mb-6 md:mb-8 tracking-tighter leading-none"
-            style={{ opacity: 1 - scrollY / 400 }}
-          >
-            <span className="block bg-gradient-to-r from-white via-amber-100 to-white bg-clip-text text-transparent">
-              BENTLEY
-            </span>
-            <span className="block bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 bg-clip-text text-transparent font-light">
-              VIP
-            </span>
-          </h1>
-
-          <p
-            className="text-base sm:text-lg md:text-1xl lg:text-1xl mb-12 md:mb-16 text-gray-300 font-light tracking-wide max-w-3xl mx-auto leading-relaxed px-4"
-            style={{ opacity: 1 - scrollY / 500 }}
-          >
-            Ekskluzywne <span className="text-amber-400">przejazdy VIP</span>, śluby, przewozy
-            biznesowe i usługi szoferskie na najwyższym poziomie.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center px-4">
-            <a
-              href="tel:999999999"
-              className="group relative w-full sm:w-auto px-8 md:px-12 py-4 md:py-5 bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-semibold tracking-widest overflow-hidden transform hover:scale-105 transition-all duration-300 text-sm md:text-base"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="relative flex items-center justify-center gap-3">
-                <Phone size={18} className="md:w-5 md:h-5" />
-                ZADZWOŃ TERAZ
-              </div>
-              <div className="absolute inset-0 shadow-lg shadow-amber-500/50 group-hover:shadow-amber-500/80 transition-all duration-300" />
-            </a>
-
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="group relative w-full sm:w-auto px-8 md:px-12 py-4 md:py-5 border-2 border-amber-400 text-amber-400 font-semibold tracking-widest overflow-hidden backdrop-blur-sm bg-black/30 text-sm md:text-base"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-yellow-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-              <span className="relative group-hover:text-black transition-colors duration-300">
-                ZAREZERWUJ TERAZ
-              </span>
-            </button>
-          </div>
-        </div>
-
-        <div
-          className="absolute bottom-8 md:bottom-4 left-1/2"
-          style={{ opacity: 1 - scrollY / 300, transform: 'translateX(-35%)' }}
-        >
-          <div className="animate-bounce flex flex-col items-center">
-            <ChevronDown size={32} className="md:w-10 md:h-10 text-amber-400" />
-          </div>
-          <div className="text-xs tracking-widest text-amber-400 mt-2">PRZEWIŃ</div>
-        </div>
-
-        {/* Floating elements */}
-        <div className="hidden md:block absolute top-1/4 left-10 w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
-        <div className="hidden md:block absolute bottom-1/4 right-10 w-3 h-3 border border-amber-400 rotate-45" />
-      </section>
-
-      {/* About Section with Glassmorphism */}
-      <section id="about" className="relative py-20 md:py-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className="space-y-6 md:space-y-8"
-            style={{
-              transform:
-                window.innerWidth >= 1024
-                  ? `translateX(${Math.max(0, 200 - scrollY + 500)}px)`
-                  : 'none',
-              opacity: Math.min(1, (scrollY - 500) / 300),
-            }}
-          >
-            <div className="flex">
-              <div className="flex-1">
-                <div className="text-amber-400 text-xs tracking-[0.3em] md:tracking-[0.5em] uppercase mb-4 md:mb-6">
-                  O Samochodzie
-                </div>
-                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-thin mb-6 md:mb-8 leading-tight">
-                  Bentley
-                  <br />
-                  <span className="bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent font-light">
-                    Flying Spur
-                  </span>
-                </h2>
-                <div className="h-1 w-20 md:w-24 bg-gradient-to-r from-amber-400 to-transparent mb-6 md:mb-8" />
-                <p className="text-gray-400 text-base md:text-lg leading-relaxed font-light">
-                  Bentley Flying Spur to uosobienie brytyjskiego luksusu i rzemiosła
-                  motoryzacyjnego. Ten wyjątkowy samochód łączy w sobie niespotykaną elegancję z
-                  imponującą mocą, tworząc idealne połączenie dla wymagających klientów - od ślubów,
-                  przez przejazdy VIP, aż po przewozy biznesowe i usługi szoferskie najwyższej
-                  klasy.
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-col md:flex-row gap-4">
-              {features.map((feature, i) => (
-                <div
-                  key={i}
-                  className="flex-1 group rounded-lg backdrop-blur-xl bg-white/5 border border-amber-400/10 p-5 md:p-6 hover:border-amber-400/30 transition-all duration-300 hover:transform hover:scale-105"
-                  style={{
-                    opacity: Math.min(1, (scrollY - 700) / 300),
-                  }}
-                >
-                  <div className="bg-gradient-to-br from-amber-500/20 to-yellow-600/20 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <feature.icon className="text-amber-400" size={20} />
-                  </div>
-                  <h3 className="text-lg md:text-xl font-light mb-2 tracking-wide">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{feature.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className=" lg:mb-40 lg:pl-20 lg:pr-20 px-5 mb-40 ">
-        <div
-          className="relative mt-12 lg:mt-0"
-          style={{
-            transform: `translateX(${translateX})`,
-            opacity,
-            willChange: 'transform, opacity',
-          }}
-        >
-          <div className="relative">
-            <div
-              className="w-full h-full overflow-hidden rounded-lg border border-amber-400/20 bg-black"
-              style={style}
-            >
-              <img
-                src={heroImage}
-                alt="Bentley Flying Spur"
-                className="w-full h-full object-contain object-center"
-              />
-            </div>
-          </div>
-
-          <div className="absolute -inset-4 border border-amber-400/20 rounded-lg -z-10" />
-        </div>
-      </section>
-
-      {/* Gallery with Advanced Effects */}
-      <section id="gallery" className="relative py-20 md:py-40 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-amber-950/5 to-black" />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-1 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-20">
-            <div className="text-amber-400 text-xs tracking-[0.3em] md:tracking-[0.5em] uppercase mb-4 md:mb-6">
-              Galeria
-            </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-thin mb-4 md:mb-6">
-              Zobacz{' '}
-              <span className="bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent font-light">
-                Detale
-              </span>
-            </h2>
-            <div className="h-1 w-20 md:w-24 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto" />
-          </div>
-
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6 [column-fill:_balance]">
-            {galleryImages.map((item, index) => (
-              <div
-                key={index}
-                className="group relative mb-4 md:mb-6 break-inside-avoid rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-all duration-500 cursor-pointer overflow-hidden"
-                style={{
-                  opacity: Math.min(1, (scrollY - 1400 - index * 50) / 200),
-                  transform: `translateY(${Math.max(0, 50 - (scrollY - 1400 - index * 50) / 4)}px)`,
-                }}
-                onClick={() => setGalleryModalSrc(item.src)}
-              >
-                <img
-                  src={item.src}
-                  alt={`Bentley Flying Spur - zdjęcie ${index + 1}`}
-                  className="w-full h-auto block"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/0 to-yellow-600/0 group-hover:from-amber-500/10 group-hover:to-yellow-600/10 transition-all duration-500 pointer-events-none" />
-                <div className="absolute inset-0 border-2 border-amber-400 opacity-0 group-hover:opacity-20 scale-105 group-hover:scale-100 transition-all duration-500 rounded-lg pointer-events-none" />
-              </div>
-            ))}
-          </div>
-
-          {galleryModalSrc && (
-            <div
-              className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm"
-              onClick={() => setGalleryModalSrc(null)}
-            >
-              <button
-                type="button"
-                className="absolute top-4 right-4 z-10 p-2 rounded-full border border-amber-400/40 text-amber-400 hover:bg-amber-400/10 transition-colors"
-                onClick={() => setGalleryModalSrc(null)}
-                aria-label="Zamknij"
-              >
-                <X size={28} />
-              </button>
-              <img
-                src={galleryModalSrc}
-                alt="Powiększenie"
-                className="max-w-full max-h-full w-auto h-auto object-contain rounded shadow-2xl"
-                onClick={(e) => e.stopPropagation()}
-              />
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="relative py-20 md:py-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-20">
-            <div className="text-amber-400 text-xs tracking-[0.3em] md:tracking-[0.5em] uppercase mb-4 md:mb-6">
-              Kontakt
-            </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-thin mb-4 md:mb-6">
-              Zarezerwuj swoją{' '}
-              <span className="bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent font-light">
-                jazdę
-              </span>
-            </h2>
-            <div className="h-1 w-20 md:w-24 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto" />
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
-            {[
-              { icon: Phone, label: 'Telefon', value: '999 999 999', href: 'tel:999999999' },
-              {
-                icon: Mail,
-                label: 'Email',
-                value: 'kontakt@bentleyvip.pl',
-                href: 'mailto:kontakt@bentleyvip.pl',
-              },
-              { icon: MapPin, label: 'Adres', value: 'Warszawa, Polska' },
-              { icon: Clock, label: 'Godziny', value: 'Pn-Pt: 9-20, Sb-Nd: 10-18' },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="group flex flex-col items-center text-center backdrop-blur-xl bg-white/5 border  border-amber-400/20 p-6 rounded-lg md:p-8 hover:border-amber-400/40 hover:bg-white/10 transition-all duration-300"
-              >
-                <div className="bg-gradient-to-br from-amber-500/20 to-yellow-600/20 w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 mb-4 md:mb-6">
-                  <item.icon className="text-amber-400" size={24} />
-                </div>
-                <div className="text-xs text-amber-400 tracking-wider uppercase mb-2">
-                  {item.label}
-                </div>
-                <div className="text-sm md:text-base font-light break-all">{item.value}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <footer className="relative border-t border-amber-400/20 py2 md:py-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-16">
-            <div className="sm:col-span-2">
-              <h3 className="text-2xl md:text-3xl font-thin tracking-[0.2em] md:tracking-[0.3em] mb-4 md:mb-6">
-                <span className="bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent">
-                  BENTLEY
-                </span>
-                <span className="text-white"> VIP TRANSPORT</span>
-              </h3>
-              <p className="text-gray-500 leading-relaxed font-light text-sm md:text-base">
-                Ekskluzywny wynajem Bentley Flying Spur. Przejazdy VIP, śluby, przewozy biznesowe i
-                usługi szoferskie najwyższej klasy.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="text-amber-400 text-xs md:text-sm tracking-widest uppercase mb-4 md:mb-6">
-                Szybkie Linki
-              </h4>
-              <div className="space-y-2 md:space-y-3">
-                {['O Samochodzie', 'Galeria', 'Kontakt'].map((item, i) => (
-                  <button
-                    key={i}
-                    onClick={() => scrollToSection(['about', 'gallery', 'contact'][i])}
-                    className="block text-gray-500 hover:text-amber-400 transition-colors font-light text-sm md:text-base"
-                  >
-                    {item}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-amber-400 text-xs md:text-sm tracking-widest uppercase mb-4 md:mb-6">
-                Kontakt
-              </h4>
-              <div className="space-y-2 md:space-y-3 text-gray-500 font-light text-sm md:text-base">
-                <a href="tel:999999999" className="block hover:text-amber-400 transition-colors">
-                  999 999 999
-                </a>
-                <a
-                  href="mailto:kontakt@bentleyvip.pl"
-                  className="block hover:text-amber-400 transition-colors break-all"
-                >
-                  kontakt@bentleyvip.pl
-                </a>
-                <p>Warszawa, Polska</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-amber-400/20 pt-6 md:pt-8 text-center text-gray-600 text-xs md:text-sm font-light tracking-wider">
-            <p>&copy; 2025 Bentley VIP. Wszystkie prawa zastrzeżone.</p>
-          </div>
-        </div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
-      </footer>
+      <Footer scrollToSection={scrollToSection} />
     </div>
   )
 }
