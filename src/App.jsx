@@ -1,10 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Phone, Mail, MapPin, Clock, Shield, Star, ChevronDown, Menu, X, Award } from 'lucide-react'
 import * as THREE from 'three'
+import heroImage from '@/assets/images/hero.webp'
+import gallery1 from '@/assets/images/gallery-1.webp'
+import gallery2 from '@/assets/images/gallery-2.webp'
+import gallery3 from '@/assets/images/gallery-3.webp'
+import gallery4 from '@/assets/images/gallery-4.webp'
+import gallery5 from '@/assets/images/gallery-5.webp'
+import gallery6 from '@/assets/images/gallery-6.webp'
 
 const BentleyVipSite = () => {
   const [scrollY, setScrollY] = useState(0)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [galleryModalSrc, setGalleryModalSrc] = useState(null)
 
   const canvasRef = useRef(null)
 
@@ -19,11 +27,11 @@ const BentleyVipSite = () => {
   }, [])
 
   const range = 400
-  let start = 1730
+  let start = 1300
   if (typeof window !== 'undefined') {
     const width = window.innerWidth
-    if (width < 768) start = 1200
-    else if (width < 1024) start = 1400
+    if (width < 768) start = 900
+    else if (width < 1024) start = 1100
   }
 
   const isSmallScreen = window.innerWidth < 768
@@ -146,6 +154,29 @@ const BentleyVipSite = () => {
     { icon: Award, title: 'Dyskrecja', desc: 'Pełna poufność i profesjonalizm' },
   ]
 
+  const galleryImages = [
+    { src: gallery1, span: 'col-span-2 row-span-2' },
+    { src: gallery2, span: '' },
+    { src: gallery3, span: '' },
+    { src: gallery4, span: '' },
+    { src: gallery5, span: '' },
+    { src: gallery6, span: 'col-span-2' },
+  ]
+
+  useEffect(() => {
+    if (galleryModalSrc) document.body.style.overflow = 'hidden'
+    else document.body.style.overflow = ''
+    return () => { document.body.style.overflow = '' }
+  }, [galleryModalSrc])
+
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setGalleryModalSrc(null)
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [])
+
   return (
     <div className="bg-black text-white font-sans overflow-hidden relative">
       <canvas
@@ -244,7 +275,6 @@ const BentleyVipSite = () => {
         className="relative min-h-screen flex items-center justify-center overflow-hidden px-4"
       >
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black" />
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0gMTAwIDAgTCAwIDAgMCAxMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyMTIsIDE3NSwgNTUsIDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20" />
         </div>
 
@@ -316,26 +346,6 @@ const BentleyVipSite = () => {
         <div className="hidden md:block absolute bottom-1/4 right-10 w-3 h-3 border border-amber-400 rotate-45" />
       </section>
 
-      {/* Video Section with Parallax */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
-        <div
-          className="absolute inset-0 flex items-center justify-center"
-          style={{ transform: `scale(${1 + scrollY / 3000})` }}
-        >
-          <div className="w-full h-full bg-gradient-to-br from-amber-900/20 via-black to-black" />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-1 sm:px-6 lg:px-8">
-          <div className="backdrop-blur-xl bg-white/5 border border-amber-400/20 p-1 md:p-2 rounded-lg shadow-2xl">
-            <div className="aspect-video bg-gradient-to-br from-gray-900 via-amber-900/20 to-black flex items-center justify-center text-xl sm:text-3xl md:text-5xl lg:text-6xl text-amber-400/30 font-thin tracking-wider rounded p-4 text-center leading-tight">
-              [WIDEO PREZENTACYJNE
-              <br className="hidden sm:block" />
-              BENTLEY FLYING SPUR]
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* About Section with Glassmorphism */}
       <section id="about" className="relative py-20 md:py-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -344,9 +354,9 @@ const BentleyVipSite = () => {
             style={{
               transform:
                 window.innerWidth >= 1024
-                  ? `translateX(${Math.max(0, 200 - scrollY + 800)}px)`
+                  ? `translateX(${Math.max(0, 200 - scrollY + 500)}px)`
                   : 'none',
-              opacity: Math.min(1, (scrollY - 800) / 300),
+              opacity: Math.min(1, (scrollY - 500) / 300),
             }}
           >
             <div className="flex">
@@ -377,7 +387,7 @@ const BentleyVipSite = () => {
                   key={i}
                   className="flex-1 group rounded-lg backdrop-blur-xl bg-white/5 border border-amber-400/10 p-5 md:p-6 hover:border-amber-400/30 transition-all duration-300 hover:transform hover:scale-105"
                   style={{
-                    opacity: Math.min(1, (scrollY - 1000) / 300),
+                    opacity: Math.min(1, (scrollY - 700) / 300),
                   }}
                 >
                   <div className="bg-gradient-to-br from-amber-500/20 to-yellow-600/20 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -404,17 +414,14 @@ const BentleyVipSite = () => {
         >
           <div className="relative">
             <div
-              className="w-full h-full bg-gradient-to-br from-amber-900/30 via-black to-black
-                      flex items-center justify-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl
-                      text-amber-400/20 font-thin backdrop-blur-sm border border-amber-400/20
-                      rounded-lg text-center leading-tight"
+              className="w-full h-full overflow-hidden rounded-lg border border-amber-400/20 bg-black"
               style={style}
             >
-              [GŁÓWNE ZDJĘCIE
-              <br />
-              BENTLEY
-              <br />
-              FLYING SPUR]
+              <img
+                src={heroImage}
+                alt="Bentley Flying Spur"
+                className="w-full h-full object-contain object-center"
+              />
             </div>
           </div>
 
@@ -440,24 +447,49 @@ const BentleyVipSite = () => {
             <div className="h-1 w-20 md:w-24 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6 [column-fill:_balance]">
+            {galleryImages.map((item, index) => (
               <div
-                key={item}
-                className="group relative overflow-hidden"
+                key={index}
+                className="group relative mb-4 md:mb-6 break-inside-avoid rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-all duration-500 cursor-pointer overflow-hidden"
                 style={{
-                  opacity: Math.min(1, (scrollY - 1800 - item * 50) / 200),
-                  transform: `translateY(${Math.max(0, 50 - (scrollY - 1800 - item * 50) / 4)}px)`,
+                  opacity: Math.min(1, (scrollY - 1400 - index * 50) / 200),
+                  transform: `translateY(${Math.max(0, 50 - (scrollY - 1400 - index * 50) / 4)}px)`,
                 }}
+                onClick={() => setGalleryModalSrc(item.src)}
               >
-                <div className="aspect-video backdrop-blur-xl bg-gradient-to-br from-amber-900/20 via-black to-black flex items-center justify-center text-lg sm:text-xl md:text-2xl text-amber-400/30 font-thin border border-amber-400/20 rounded-lg overflow-hidden relative group-hover:border-amber-400/40 transition-all duration-500 p-4">
-                  <span className="relative z-10 text-center">[ZDJĘCIE {item}]</span>
-                  <div className="absolute inset-0 bg-gradient-to-br from-amber-500/0 to-yellow-600/0 group-hover:from-amber-500/10 group-hover:to-yellow-600/10 transition-all duration-500" />
-                </div>
-                <div className="absolute inset-0 border-2 border-amber-400 opacity-0 group-hover:opacity-20 transform scale-105 group-hover:scale-100 transition-all duration-500 rounded-lg pointer-events-none" />
+                <img
+                  src={item.src}
+                  alt={`Bentley Flying Spur - zdjęcie ${index + 1}`}
+                  className="w-full h-auto block"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/0 to-yellow-600/0 group-hover:from-amber-500/10 group-hover:to-yellow-600/10 transition-all duration-500 pointer-events-none" />
+                <div className="absolute inset-0 border-2 border-amber-400 opacity-0 group-hover:opacity-20 scale-105 group-hover:scale-100 transition-all duration-500 rounded-lg pointer-events-none" />
               </div>
             ))}
           </div>
+
+          {galleryModalSrc && (
+            <div
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm"
+              onClick={() => setGalleryModalSrc(null)}
+            >
+              <button
+                type="button"
+                className="absolute top-4 right-4 z-10 p-2 rounded-full border border-amber-400/40 text-amber-400 hover:bg-amber-400/10 transition-colors"
+                onClick={() => setGalleryModalSrc(null)}
+                aria-label="Zamknij"
+              >
+                <X size={28} />
+              </button>
+              <img
+                src={galleryModalSrc}
+                alt="Powiększenie"
+                className="max-w-full max-h-full w-auto h-auto object-contain rounded shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>
+          )}
         </div>
       </section>
 
