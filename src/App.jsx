@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Phone, Mail, MapPin, Clock, Shield, Star, ChevronDown, Menu, X, Award } from 'lucide-react'
 import * as THREE from 'three'
 
-const BentleyWeddingSite = () => {
+const BentleyVipSite = () => {
   const [scrollY, setScrollY] = useState(0)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -567,4 +567,4 @@ const BentleyWeddingSite = () => {
   )
 }
 
-export default BentleyWeddingSite
+export default BentleyVipSite
