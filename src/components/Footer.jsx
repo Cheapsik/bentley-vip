@@ -10,7 +10,7 @@ const Footer = ({ scrollToSection }) => {
               <span className="bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent">
                 BENTLEY
               </span>
-              <span className="text-white"> VIP TRANSPORT</span>
+              <span className="bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent"> GO</span>
             </h3>
             <p className="text-gray-500 leading-relaxed font-light text-sm md:text-base">
               Ekskluzywny wynajem Bentley Flying Spur. Przejazdy VIP, śluby, przewozy biznesowe i
@@ -44,10 +44,10 @@ const Footer = ({ scrollToSection }) => {
                 999 999 999
               </a>
               <a
-                href="mailto:kontakt@bentleyvip.pl"
+                href="mailto:kontakt@bentleygo.pl"
                 className="block hover:text-amber-400 transition-colors break-all"
               >
-                kontakt@bentleyvip.pl
+                kontakt@bentleygo.pl
               </a>
               <p>Rzeszów, Polska</p>
             </div>
@@ -55,7 +55,7 @@ const Footer = ({ scrollToSection }) => {
         </div>
 
         <div className="border-t border-amber-400/20 pt-6 pb-6 md:pt-8 md:pb-10 text-center text-gray-600 text-xs md:text-sm font-light tracking-wider">
-          <p>&copy; 2026 Bentley VIP. Wszystkie prawa zastrzeżone.</p>
+          <p>&copy; 2026 Bentley Go. Wszystkie prawa zastrzeżone.</p>
         </div>
       </div>
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />

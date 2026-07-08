@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { useLenis } from 'lenis/react'
 import * as THREE from 'three'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
@@ -8,43 +9,27 @@ import GallerySection from '@/components/GallerySection'
 import ContactSection from '@/components/ContactSection'
 import Footer from '@/components/Footer'
 
-const BentleyVipSite = () => {
+const BentleyGoSite = () => {
   const [scrollY, setScrollY] = useState(0)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [galleryModalSrc, setGalleryModalSrc] = useState(null)
 
   const canvasRef = useRef(null)
+  const lenis = useLenis()
+
+  useLenis((instance) => {
+    setScrollY(instance.scroll)
+  })
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
+    if (lenis) return undefined
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    const onScroll = () => setScrollY(window.scrollY)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
-
-  const range = 400
-  let start = 1300
-  if (typeof window !== 'undefined') {
-    const width = window.innerWidth
-    if (width < 768) start = 900
-    else if (width < 1024) start = 1100
-  }
-
-  const isSmallScreen = window.innerWidth < 768
-  const raw = (scrollY - start) / range
-  const progress = Math.max(0, Math.min(1, raw))
-
-  const translateX = `${100 - progress * 100}%`
-  const opacity = progress
-
-  const style = {
-    ...(isSmallScreen
-      ? { aspectRatio: '1 / 1' }
-      : { height: 'calc(100vh - 200px)', maxHeight: '2000px' }),
-  }
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [lenis])
 
   useEffect(() => {
     if (!canvasRef.current) return
@@ -137,27 +122,38 @@ const BentleyVipSite = () => {
     }
   }, [])
 
-  const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-    setMobileMenuOpen(false)
-  }
+  const scrollToSection = useCallback(
+    (id) => {
+      const el = document.getElementById(id)
+      if (el && lenis) {
+        lenis.scrollTo(el, { offset: -96, duration: 1.4 })
+      } else {
+        el?.scrollIntoView({ behavior: 'smooth' })
+      }
+      setMobileMenuOpen(false)
+    },
+    [lenis]
+  )
 
   useEffect(() => {
-    if (galleryModalSrc) document.body.style.overflow = 'hidden'
-    else document.body.style.overflow = ''
-    return () => { document.body.style.overflow = '' }
-  }, [galleryModalSrc])
+    if (!lenis) return
+    if (galleryModalSrc || mobileMenuOpen) lenis.stop()
+    else lenis.start()
+  }, [lenis, galleryModalSrc, mobileMenuOpen])
 
   useEffect(() => {
     const onKeyDown = (e) => {
-      if (e.key === 'Escape') setGalleryModalSrc(null)
+      if (e.key === 'Escape') {
+        setGalleryModalSrc(null)
+        setMobileMenuOpen(false)
+      }
     }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [])
 
   return (
-    <div className="bg-black text-white font-sans overflow-hidden relative">
+    <div className="bg-black text-white font-sans relative w-full max-w-full overflow-x-clip">
       <canvas
         ref={canvasRef}
         className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
@@ -181,7 +177,14 @@ const BentleyVipSite = () => {
         />
       </div>
 
-      <header>
+      <header className="relative z-50">
+        {mobileMenuOpen && (
+          <div
+            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-md lg:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+        )}
         <Navbar
           scrollY={scrollY}
           mobileMenuOpen={mobileMenuOpen}
@@ -190,12 +193,12 @@ const BentleyVipSite = () => {
         />
       </header>
 
-      <main>
+      <main className="w-full max-w-full overflow-x-clip">
         <Hero scrollY={scrollY} scrollToSection={scrollToSection} />
 
         <AboutSection scrollY={scrollY} />
 
-        <HeroImageSection translateX={translateX} opacity={opacity} style={style} />
+        <HeroImageSection />
 
         <GallerySection
           scrollY={scrollY}
@@ -211,4 +214,4 @@ const BentleyVipSite = () => {
   )
 }
 
-export default BentleyVipSite
+export default BentleyGoSite

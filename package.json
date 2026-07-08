@@ -1,7 +1,8 @@
 {
-  "name": "bentley-vip",
+  "name": "bentley-go",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://cheapsik.github.io/bentley-go",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -14,6 +15,7 @@
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.2",
     "framer-motion": "^12.23.26",
+    "lenis": "^1.3.25",
     "lucide-react": "^0.561.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",

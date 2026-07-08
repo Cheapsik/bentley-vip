@@ -14,10 +14,10 @@ const Navbar = ({ scrollY, mobileMenuOpen, setMobileMenuOpen, scrollToSection })
         <div className="flex justify-between items-center h-20 md:h-24">
           <div className="text-xl md:text-3xl font-thin tracking-[0.2em] md:tracking-[0.3em] relative">
             <span className="absolute inset-0 blur-sm bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent">
-              BENTLEY VIP
+              BENTLEY GO
             </span>
             <span className="relative bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent">
-              BENTLEY VIP
+              BENTLEY GO
             </span>
           </div>
 
@@ -49,7 +49,7 @@ const Navbar = ({ scrollY, mobileMenuOpen, setMobileMenuOpen, scrollToSection })
         </div>
 
         {mobileMenuOpen && (
-          <div className="lg:hidden py-6 space-y-4 backdrop-blur-xl bg-black/80">
+          <div className="lg:hidden py-6 space-y-4 border-t border-amber-400/10 bg-black/90">
             {['Start', 'O Samochodzie', 'Galeria', 'Kontakt'].map((item, i) => (
               <button
                 key={item}

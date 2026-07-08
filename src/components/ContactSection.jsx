@@ -7,8 +7,8 @@ const ContactSection = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'kontakt@bentleyvip.pl',
-      href: 'mailto:kontakt@bentleyvip.pl',
+      value: 'kontakt@bentleygo.pl',
+      href: 'mailto:kontakt@bentleygo.pl',
     },
     { icon: MapPin, label: 'Adres', value: 'Rzeszów, Polska' },
     { icon: Clock, label: 'Godziny', value: 'Pn-Pt: 9-20, Sb-Nd: 10-18' },
